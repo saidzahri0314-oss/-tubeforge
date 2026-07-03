@@ -12,7 +12,8 @@ import os
 import anthropic
 import streamlit as st
 
-MODEL = "claude-opus-4-8"
+MODEL_PREMIUM = "claude-opus-4-8"   # most capable — premium users
+MODEL_FREE = "claude-haiku-4-5"     # fast + ~10x cheaper — free tier
 
 st.set_page_config(
     page_title="TubeForge — Faceless YouTube Copilot",
@@ -121,7 +122,29 @@ STRIPE_CHECKOUT_URL = secret("STRIPE_CHECKOUT_URL") or "https://buy.stripe.com/Y
 # Override with a PREMIUM_ACCESS_KEY secret (recommended) or change the fallback below.
 PREMIUM_KEY = str(secret("PREMIUM_ACCESS_KEY") or "TUBEFORGE-PREMIUM-2026")
 
-FREE_GENERATIONS = 2  # free Claude calls per visitor session
+# Per-visitor free limit (per browser session). Override with a FREE_GENERATIONS secret.
+FREE_GENERATIONS = int(secret("FREE_GENERATIONS") or 2)
+
+# Global cap on free generates per day, across ALL visitors combined —
+# protects your API bill even if people refresh to reset their session.
+# Override with a DAILY_FREE_BUDGET secret. Set 0 to disable the free tier entirely.
+DAILY_FREE_BUDGET = int(secret("DAILY_FREE_BUDGET") or 20)
+
+
+@st.cache_resource
+def _global_usage():
+    """Server-wide counter shared by every visitor. Resets on reboot/redeploy."""
+    return {"date": "", "count": 0}
+
+
+def _free_budget_left() -> int:
+    import datetime
+    usage = _global_usage()
+    today = datetime.date.today().isoformat()
+    if usage["date"] != today:
+        usage["date"] = today
+        usage["count"] = 0
+    return DAILY_FREE_BUDGET - usage["count"]
 
 
 def is_premium() -> bool:
@@ -133,29 +156,47 @@ def generations_used() -> int:
 
 
 def can_generate() -> bool:
-    return is_premium() or generations_used() < FREE_GENERATIONS
+    if is_premium():
+        return True
+    return generations_used() < FREE_GENERATIONS and _free_budget_left() > 0
 
 
 def record_generation():
     st.session_state["gen_count"] = generations_used() + 1
+    if not is_premium():
+        _global_usage()["count"] += 1
+
+
+def model_params() -> dict:
+    """Premium: Opus 4.8 with adaptive thinking. Free: Haiku 4.5 (no thinking config)."""
+    if is_premium():
+        return {"model": MODEL_PREMIUM, "thinking": {"type": "adaptive"}}
+    return {"model": MODEL_FREE}
 
 
 def paywall_notice():
-    st.warning(
-        f"🔒 You've used your {FREE_GENERATIONS} free generates. "
-        "Upgrade to Premium in the sidebar, then enter your access key to unlock unlimited generates."
-    )
+    if not is_premium() and generations_used() < FREE_GENERATIONS and _free_budget_left() <= 0:
+        st.warning(
+            "🔒 Today's free generates are all used up (across all visitors). "
+            "Come back tomorrow, or upgrade to Premium in the sidebar for unlimited access."
+        )
+    else:
+        st.warning(
+            f"🔒 You've used your {FREE_GENERATIONS} free generates. "
+            "Upgrade to Premium in the sidebar, then enter your access key to unlock unlimited generates."
+        )
 
 
 def render_sidebar():
     with st.sidebar:
         st.markdown("## 🔺 TubeForge")
         if is_premium():
-            st.success("💎 Premium unlocked — unlimited generates.")
+            st.success("💎 Premium unlocked — unlimited generates on Claude Opus 4.8.")
             return
         left = max(FREE_GENERATIONS - generations_used(), 0)
         st.markdown(f"**Free plan:** {left} of {FREE_GENERATIONS} free generates left")
         st.progress(left / FREE_GENERATIONS if FREE_GENERATIONS else 0.0)
+        st.caption("Free plan runs on Claude Haiku (fast). Premium runs on Claude Opus 4.8 — our deepest analysis.")
         st.link_button(
             "🚀 Upgrade to Premium for Unlimited Generates",
             STRIPE_CHECKOUT_URL,
@@ -330,9 +371,8 @@ Write the script in a natural spoken voice — contractions, short sentences, no
 
 def structured_call(client, system: str, user_text: str, schema: dict) -> dict:
     with client.messages.stream(
-        model=MODEL,
+        **model_params(),
         max_tokens=16000,
-        thinking={"type": "adaptive"},
         system=system,
         messages=[{"role": "user", "content": user_text}],
         output_config={"format": {"type": "json_schema", "schema": schema}},
@@ -346,9 +386,8 @@ def structured_call(client, system: str, user_text: str, schema: dict) -> dict:
 
 def reverse_stream(client, user_text: str):
     with client.messages.stream(
-        model=MODEL,
+        **model_params(),
         max_tokens=32000,
-        thinking={"type": "adaptive"},
         system=REVERSE_SYSTEM,
         messages=[{"role": "user", "content": user_text}],
     ) as stream:
@@ -459,7 +498,7 @@ st.markdown(
   <p class="tf-sub">TubeForge analyzes niches, X-rays the scripts behind winning videos — hooks,
   structure, retention — and reverse-engineers them into a launch plan and a ready-to-record
   script for <em>your</em> new channel. No camera. No guesswork.</p>
-  <p class="tf-fine">Powered by Claude Opus 4.8 · Results are estimates, not guarantees.</p>
+  <p class="tf-fine">Powered by Claude · Results are estimates, not guarantees.</p>
 </div>
 """,
     unsafe_allow_html=True,
