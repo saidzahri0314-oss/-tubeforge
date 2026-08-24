@@ -1,13 +1,30 @@
 # THE SUMMER STRASBOURG DANCED ITSELF TO DEATH
 
 **Series:** Unexplained History
-**Runtime target:** 8:00
+**Runtime target:** 10:10
 **Format:** Stylized 3D cartoon — art directed in **Krita**, rendered in **Blender** (EEVEE Next + Grease Pencil line art)
 **Aspect:** 16:9 · 3840×2160 · 24 fps
-**VO:** 1,114 words @ ~138 wpm, leaving ~35 s of scored/silent visual beats
+**VO:** 1,416 words @ ~139 wpm, leaving ~40 s of scored/silent visual beats
+**Shots:** 66
 
 > Pipeline instructions: `PIPELINE-krita-blender.md`
 > Fact-check & confidence table: `SOURCES.md`
+
+## Sequence map
+
+| Seq | In | Out | Dur | Words |
+|---|---|---|---|---|
+| Cold open | 0:00 | 0:48 | 48s | 123 |
+| Title | 0:48 | 1:12 | 24s | 54 |
+| I · Contagion | 1:12 | 2:18 | 66s | 131 |
+| II · The diagnosis | 2:18 | 3:24 | 66s | 141 |
+| III · The stage | 3:24 | 4:32 | 68s | 153 |
+| IV · The red shoes | 4:32 | 5:38 | 66s | 175 |
+| V · It had happened before | 5:38 | 6:52 | 74s | 178 |
+| VI · What actually happened | 6:52 | 8:02 | 70s | 140 |
+| VII · Why it worked | 8:02 | 8:58 | 56s | 150 |
+| VIII · It never stopped | 8:58 | 9:46 | 48s | 107 |
+| Close | 9:46 | 10:10 | 24s | 64 |
 
 ---
 
@@ -33,7 +50,7 @@
 
 | Shot | Dur | Camera | Action | Build |
 |------|-----|--------|--------|-------|
-| 00A | 7 s | Slow 20 s push-in, locked height | Black. A single door in a timber-framed wall. It opens. **TROFFEA** steps out, back to us. | B |
+| 00A | 7 s | Slow push-in, locked height | Black. A single door in a timber-framed wall. It opens. **TROFFEA** steps out, back to us. | B |
 | 00B | 7 s | Low 35 mm, static | Her bare feet on wet cobbles. One foot lifts. Taps. Lifts. The rhythm starts. | B |
 | 00C | 6 s | Handheld drift, eye level | Neighbours in doorways. Grins. A woman laughs behind her hand. | B |
 | 00D | 8 s | **Same framing as 00C**, sun raked 180° | Identical staging, now dusk. Nobody is smiling. Troffea is still in frame, still moving. | B |
@@ -161,7 +178,7 @@
 
 ---
 
-## ACT IV · THE RED SHOES — `4:32 – 5:28`
+## ACT IV · THE RED SHOES — `4:32 – 5:38`
 
 > **VO**
 >
@@ -176,24 +193,61 @@
 > And the dancers were loaded onto wagons and driven thirty miles up into the mountains, to a shrine in a cave above Saverne, dedicated to Saint Vitus.
 >
 > There, they were given red shoes.
+>
+> The shoes were rubbed with holy oil. The dancers were led around a wooden carving of the saint. Mass was said over them.
+>
+> And by early September, the dancing stopped.
 
 | Shot | Dur | Camera | Action | Build |
 |------|-----|--------|--------|-------|
 | 05A | 7 s | Static wide, stage | A dancer drops mid-frame. The music does not stop. The others dance around the body. | B |
-| 05B | 10 s | Static, "citation" plate | Specklin's chronicle page, *15 A DAY* circled — then the whole plate greys out and stamps **WRITTEN 50+ YEARS LATER.** | K |
+| 05B | 9 s | Static "citation" plate | Specklin's chronicle page, *15 A DAY* circled — then the whole plate greys out and stamps **WRITTEN 50+ YEARS LATER.** | K |
 | 05C | 6 s | Same treatment | The number **400** on parchment, with a sliding bar beneath it: *50 ——— 400.* | K |
-| 05D | 8 s | Fast cuts ×3, hard | A drum is confiscated. A tambourine is bagged. A piper's hands are pushed down off his instrument. | B |
-| 05E | 12 s | Long lens, side tracking | Wagons on a mountain road at dusk. Dancers still twitching in the back. Blue moonlight — first cold palette of the film. | B |
-| 05F | 8 s | Slow push into cave mouth | Torchlight on wet rock. A crude wooden Saint Vitus waits at the back. | B |
+| 05D | 7 s | Fast cuts ×3, hard | A drum is confiscated. A tambourine is bagged. A piper's hands are pushed down off his instrument. | B |
+| 05E | 11 s | Long lens, side tracking | Wagons on a mountain road at dusk. Dancers still twitching in the back. Blue moonlight — first cold palette of the film. | B |
+| 05F | 7 s | Slow push into cave mouth | Torchlight on wet rock. A crude wooden Saint Vitus waits at the back. | B |
 | 05G | 5 s | Macro insert, static | A pair of **red shoes** set down on stone. The only saturated colour in the shot. | K → B |
+| 05H | 9 s | Slow orbit, candlelit | The rite: oil on the shoes, the carving, a small cross pressed into a hand. Reverent, quiet, and — crucially — it appears to work. | B |
+| 05I | 5 s | Static wide | Empty Strasbourg street. Sunlight. Nobody dancing. Hold on the silence. | B |
 
 ---
 
-## ACT V · WHAT ACTUALLY HAPPENED — `5:28 – 6:48`
+## ACT V · IT HAD HAPPENED BEFORE — `5:38 – 6:52`
 
 > **VO**
 >
-> The shoes were rubbed with holy oil. The dancers were led around the wooden carving. Mass was said over them. And by early September, the dancing stopped.
+> And here's the part that changes the whole story.
+>
+> Strasbourg wasn't the first.
+>
+> 1374. A dancing epidemic breaks out in Aachen and runs down the Rhine — Cologne, Liège, Utrecht. Thousands of people. They screamed the names of demons. They begged priests to exorcise them. And it came through the year after catastrophic flooding wrecked the Rhine valley.
+>
+> 1237, Erfurt: a crowd of children dance their way out of the city and keep going for miles, all the way to the next town.
+>
+> 1278: around two hundred people dance on a bridge over the Meuse until it collapses under them. The survivors are carried to a chapel — and the chapel is dedicated to Saint Vitus.
+>
+> 1428, Schaffhausen: a monk dances until he dies.
+>
+> Scattered along the Rhine and the Moselle across nearly three centuries — always the same corner of Europe, and, this is the key, almost always in the wake of a disaster. Flood. Famine. Plague.
+>
+> 1518 isn't a freak event. It's the last big one — and the one where somebody finally wrote everything down.
+
+| Shot | Dur | Camera | Action | Build |
+|------|-----|--------|--------|-------|
+| 06A | 6 s | Hard cut, static | Black. A date burns on in white: **1374.** | K |
+| 06B | 14 s | Slow aerial track down a river, night | The Rhine from above. Towns ignite one after another as their names stamp on: *AACHEN · COLOGNE · LIÈGE · UTRECHT.* | K → B |
+| 06C | 11 s | Low, firelit, handheld | The 1374 dancers — wilder and more frightening than Strasbourg's. Priests with censers. Faces upturned, screaming. | B |
+| 06D | 9 s | Static plate, slow dissolve | Woodcut of the 1373 Rhine flood, water over rooftops — dissolve to dancers standing in the same frame, at the same water line. | K |
+| 06E | 8 s | Whip-pan to map plate | *ERFURT 1237* — a line of children's footprints runs off the edge of the map toward Arnstadt. | K |
+| 06F | 11 s | Static wide, then collapse | *THE MEUSE 1278* — a packed bridge. It gives way. **Cut on the crack, not the fall.** Then: a chapel door, and the name carved above it. | B |
+| 06G | 6 s | Static, single figure, cloister | *SCHAFFHAUSEN 1428* — one monk, alone, dancing. Cut before he falls. | B |
+| 06H | 9 s | Slow pull back from the map | The full Rhine–Moselle map. Dates ignite across three centuries — 1237, 1278, 1374, 1428 — and last of all, largest, **1518.** | K |
+
+---
+
+## ACT VI · WHAT ACTUALLY HAPPENED — `6:52 – 8:02`
+
+> **VO**
 >
 > So what actually happened here?
 >
@@ -209,17 +263,16 @@
 
 | Shot | Dur | Camera | Action | Build |
 |------|-----|--------|--------|-------|
-| 06A | 12 s | Slow orbit, candlelit | The ritual: oil, the carving, a small cross pressed into a hand. Reverent, quiet. | B |
-| 06B | 6 s | Static wide | Empty Strasbourg street. Sunlight. Nobody dancing. Hold on the silence. | B |
-| 06C | 17 s | Flat "explainer" mode — locked off, paper-white bg | **ERGOT plate:** rye stalk, fungus, molecule diagram. Clean, clinical, deliberately different look from the drama. | K |
-| 06D | 13 s | Same plate, annotated | Red **✗** stamps over it. Callouts fire in: *vasoconstriction · convulsions · gangrene*. The dancing figure beside it collapses instead of dancing. | K |
-| 06E | 12 s | Static plate | **CULT plate:** hooded figures in a ring — then the plate crumples like discarded paper. | K |
-| 06F | 11 s | Slow push, back to full render | Return to the dancer's face from 02D. Same shot, longer lens, shallower focus. | B |
-| 06G | 9 s | Static | Text stamps over the face: *TRANCE.* | B + K |
+| 07A | 5 s | Static, black | Question card. Beat of silence before the analysis begins. | K |
+| 07B | 17 s | Flat "explainer" mode — locked off, paper-white bg | **ERGOT plate:** rye stalk, fungus, molecule diagram. Clean, clinical, deliberately a different medium from the drama. | K |
+| 07C | 14 s | Same plate, annotated | Red **✗** stamps over it. Callouts fire in: *vasoconstriction · convulsions · gangrene*. The dancing figure beside it collapses instead of dancing. | K |
+| 07D | 12 s | Static plate | **CULT plate:** hooded figures in a ring — then the plate crumples like discarded paper. | K |
+| 07E | 12 s | Slow push, back to full render, 85 mm | Return to the dancer's face from 02D. Same shot, longer lens, shallower focus. | B |
+| 07F | 10 s | Static | Text stamps over the face: *TRANCE.* | B + K |
 
 ---
 
-## ACT VI · WHY IT WORKED — `6:48 – 7:44`
+## ACT VII · WHY IT WORKED — `8:02 – 8:58`
 
 > **VO**
 >
@@ -237,22 +290,44 @@
 
 | Shot | Dur | Camera | Action | Build |
 |------|-----|--------|--------|-------|
-| 07A | 18 s | One continuous lateral track, no cuts | A single unbroken dolly past 1517 Alsace: empty grain sacks → a price board climbing → a plague door-mark → a child left on a step → a body in the reeds of the Rhine. **This is the emotional centre of the film — do not cut it up.** | B |
-| 07B | 12 s | Slow push, low angle | Stained-glass Saint Vitus, backlit. Beautiful and menacing. His painted limbs twitch, just once. | K → B |
-| 07C | 14 s | Three-panel plate | Diagram: **STRESS** + **BELIEF** + **A VISIBLE EXAMPLE** → three streams converge into one red figure, dancing. | K |
-| 07D | 12 s | Static, straight-on | Troffea again, first shot of the film restaged — but now the street behind her fills with four hundred instanced dancers falling into her rhythm. | B |
+| 08A | 18 s | One continuous lateral track, no cuts | A single unbroken dolly past 1517 Alsace: empty grain sacks → a price board climbing → a plague door-mark → a child left on a step → a body in the reeds of the Rhine. **This is the emotional centre of the film — do not cut it up.** | B |
+| 08B | 12 s | Slow push, low angle | Stained-glass Saint Vitus, backlit. Beautiful and menacing. His painted limbs twitch, just once. | K → B |
+| 08C | 14 s | Three-panel plate | Diagram: **STRESS** + **BELIEF** + **A VISIBLE EXAMPLE** → three streams converge into one red figure, dancing. | K |
+| 08D | 12 s | Static, straight-on | Troffea again, first shot of the film restaged — but now the street behind her fills with four hundred instanced dancers falling into her rhythm. | B |
 
 ---
 
-## CLOSE — `7:44 – 8:08`
+## ACT VIII · IT NEVER STOPPED — `8:58 – 9:46`
 
 > **VO**
 >
-> We don't get dancing plagues any more. We got rid of Saint Vitus.
+> Because we still do this.
 >
-> But we did not get rid of the machinery. Mass psychogenic illness still happens — in schools, in factories, in whole towns. It just wears whatever costume the century hands it.
+> 1962, Tanganyika. Three girls at a mission school start laughing, and can't stop. It spreads to most of the school. The school closes. It jumps to the villages the girls go home to, and then to other schools. By the time it burns out, around a thousand people have been affected.
 >
-> Strasbourg's mistake wasn't superstition. Their doctors were rigorous. Their council acted fast.
+> Nobody was poisoned. Nobody was faking.
+>
+> Same machinery. Different costume.
+>
+> Textile factories. Army barracks. Schools. It shows up wherever people are frightened, packed in together, and watching each other very closely — which, if you think about it, now describes a great deal more of the world than it used to.
+
+| Shot | Dur | Camera | Action | Build |
+|------|-----|--------|--------|-------|
+| 09A | 8 s | Hard cut. Modern palette, desaturated | A 1962 classroom. Three girls at desks. One starts laughing. | B |
+| 09B | 12 s | Slow push, widening | Laughter spreads desk to desk. **Staged as an exact rhyme with 02C** — same blocking, same rhythm, 444 years later. | B |
+| 09C | 9 s | Map plate, modern cartography | Bukoba district. Villages light up one by one. A counter climbs: *SCHOOLS CLOSED — 14.* | K |
+| 09D | 10 s | Montage, 3 cuts held 3 s each | A textile factory floor. Army barracks. A modern school corridor. Flat, unglamorous, present tense. | B |
+| 09E | 9 s | Static, straight to camera | A modern transit hall, most of the crowd looking down at lit screens. Among them, unnoticed, stands the silhouette from shot 00A. | B |
+
+---
+
+## CLOSE — `9:46 – 10:10`
+
+> **VO**
+>
+> We got rid of Saint Vitus. We did not get rid of the machinery.
+>
+> And Strasbourg's real mistake was never superstition. Their doctors were rigorous. They threw out the demons and the horoscopes. Their council acted fast, spent real money, and did exactly what the best available expertise told them to do.
 >
 > They just built the stage.
 >
@@ -262,9 +337,9 @@
 
 | Shot | Dur | Camera | Action | Build |
 |------|-----|--------|--------|-------|
-| 08A | 8 s | Slow pull back | The empty wooden stage, weathered, in an empty modern-lit square. Nothing else. | B |
-| 08B | 7 s | Static | Silhouettes fill the stage one at a time until it is packed. Colour drains to ink except the red. | B |
-| 08C | 9 s | Hold, then fade | Last drum beat. Cut to black **on the beat**, not after it. End card. | B |
+| 10A | 8 s | Slow pull back | The empty wooden stage, weathered, in an empty modern-lit square. Nothing else. | B |
+| 10B | 7 s | Static | Silhouettes fill the stage one at a time until it is packed. Colour drains to ink except the red. | B |
+| 10C | 9 s | Hold, then fade | Last drum beat. Cut to black **on the beat**, not after it. End card. | B |
 
 ---
 
@@ -272,8 +347,10 @@
 
 - **The drum is the villain.** One tabor drum runs the entire film. It starts at **60 bpm** under the cold open and creeps to **132 bpm** by Act III. The audience should not consciously notice the acceleration.
 - **Act IV drops the drum entirely** at the ban — hard silence for 2 s before the wagon sequence. That silence is the biggest moment in the film.
-- **Act V (theory section)** swaps to clean, dry, no reverb — signals "we are out of the story and into the analysis."
-- The drum returns for the final shot, alone, and stops mid-bar.
+- **Act V layers instead of accelerating.** As each older outbreak arrives, another drum joins — different skin, different room, different century — until four are running against each other. They cut out together on the last date.
+- **Act VI** swaps to clean, dry, no reverb — signals "we are out of the story and into the analysis."
+- **Act VIII** is the only sequence with room tone instead of score: a classroom, a factory, a concourse. The drum is absent until the very last shot.
+- The drum returns alone for the final shot, and stops mid-bar.
 - No modern instruments anywhere. Tabor, shawm, hurdy-gurdy, voice.
 
 ## RETENTION NOTES
@@ -283,7 +360,9 @@
 | 0:00 | Action first — she is dancing before any context |
 | 0:44 | Open loop: "what the city did" is promised but withheld for 3 minutes |
 | 1:35 | Pattern interrupt — "correct the picture in your head" |
-| 2:18 | New question posed (what did they do?) right at the standard drop-off point |
+| 2:18 | New question posed right at the standard drop-off point |
 | 4:32 | Credibility beat — actively debunking your own source buys the rest of the video |
-| 5:46 | Format switch to flat explainer plates resets visual fatigue |
-| 7:44 | Payoff callback: "they just built the stage" closes the 0:44 loop |
+| 5:38 | **Premise reset at the midpoint** — the story appears to end, then "Strasbourg wasn't the first" reopens it |
+| 7:10 | Format switch to flat explainer plates resets visual fatigue |
+| 8:58 | Stops being history — 1962 makes the whole thing present tense |
+| 9:46 | Payoff callback: "they just built the stage" closes the 0:44 loop |

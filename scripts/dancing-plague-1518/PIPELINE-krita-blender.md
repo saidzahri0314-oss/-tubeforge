@@ -1,6 +1,6 @@
 # PRODUCTION PIPELINE — Krita → Blender
 
-**Target:** 8:08, 3840×2160, 24 fps, stylized cartoon.
+**Target:** 10:10, 3840×2160, 24 fps, stylized cartoon. 11 sequences, 66 shots.
 
 ## One clarification up front
 
@@ -25,9 +25,9 @@ Krita is a 2D application — it has no 3D modelling or rendering. So the "2D/3D
 | Ochre | `#B07D3A` | Midtone, wood, skin shadow |
 | **Plague red** | `#C42B1C` | **Rationed.** See below. |
 
-**Red is the story.** Track it deliberately: Cold open = a few pixels. Act I = accents only. Act III = red dominates the frame. Act IV = drains to cold blue, red shoes are the *only* saturated object in the shot. Act V = flat white explainer mode, red used only for ✗ marks. Close = red returns and takes the frame.
+**Red is the story.** Track it deliberately: Cold open = a few pixels. Act I = accents only. Act III = red dominates the frame. Act IV = drains to cold blue, red shoes are the *only* saturated object in the shot. Act V = red appears only as the igniting dates on the map. Act VI = flat white explainer mode, red used only for ✗ marks. Act VIII = red is entirely absent, the one sequence without it. Close = red returns and takes the frame.
 
-**Colour script by act:** parchment/ochre → ochre + red accents → red-dominant, sickly greens → cold blue night → clean paper white → red.
+**Colour script by act:** parchment/ochre → ochre + red accents → red-dominant, sickly greens → cold blue night → **sepia-ink chronicle (Act V)** → clean paper white → ochre/red → **desaturated modern (Act VIII)** → red.
 
 ---
 
@@ -36,7 +36,7 @@ Krita is a 2D application — it has no 3D modelling or rendering. So the "2D/3D
 Work at **3840×2160, 300 dpi, sRGB, 16-bit**. Keep layers; flatten only on export.
 
 ### 1.1 Style frames (do this first, do not skip)
-Paint **six** finished frames — one per act — before a single model is built. They lock the palette, line weight, and lighting, and they are what you compare every render against. Deliver as `art/style/ACT-0X_styleframe.png`.
+Paint **eight** finished frames — one per colour world — before a single model is built. They lock the palette, line weight, and lighting, and they are what you compare every render against. Deliver as `art/style/ACT-0X_styleframe.png`.
 
 ### 1.2 Character model sheets
 For each hero character (Troffea, Physician, Councillor, Musician, Strongman): front / side / three-quarter / back turnaround on a shared horizontal guide grid, plus an expression sheet.
@@ -66,7 +66,7 @@ Krita's animation timeline handles everything that should look hand-drawn: ink-s
 - `File → Render Animation → PNG Image Sequence`, name `fx_inkwipe_####.png`.
 - Into Blender either as an Image Sequence on a plane with alpha (**Settings → Blend Mode: Alpha Blend**, tick **Show Backface: off**), or straight into the compositor / VSE.
 
-The Act V explainer plates (`06C`–`06E`), the humours wheel (`03C`), the anatomy cutaway (`03D`) and the map (`02A`) are **pure Krita**. They are supposed to look like a different medium — that visual break is doing retention work.
+The Act VI explainer plates (`07B`–`07D`), the humours wheel (`03C`), the anatomy cutaway (`03D`), and both maps (`02A`, `06H`) are **pure Krita**. They are supposed to look like a different medium — that visual break is doing retention work.
 
 ---
 
@@ -132,9 +132,9 @@ for ob in bpy.context.selected_objects:
 Vary hue per instance too: `Object Info → Random → Hue/Saturation (Hue)` at ~0.03 strength. Tiny, but it kills the clone-army read.
 
 ### 2.5 Camera
-28 mm for streets, 50 mm for the face shots, 85 mm for `05E` and `06F`. Every move is slow and mechanical — dolly and crane, no handheld — **except** the three-cut sequences (`02C`, `04F`, `05D`), which are the only handheld in the film. That contrast is why they land.
+28 mm for streets, 50 mm for the face shots, 85 mm for `05E` and `07E`. Every move is slow and mechanical — dolly and crane, no handheld — **except** the three-cut sequences (`02C`, `04F`, `05D`, `09D`), which are the only handheld in the film. That contrast is why they land.
 
-Shot `07A` is one continuous 18-second lateral track with no cuts. Build it as one long set dressed along a straight line and move the camera on a linear F-curve. Do not be tempted to cut it up.
+Shot `08A` is one continuous 18-second lateral track with no cuts. Build it as one long set dressed along a straight line and move the camera on a linear F-curve. Do not be tempted to cut it up.
 
 ### 2.6 Compositor
 
@@ -190,19 +190,19 @@ dancing-plague-1518/
 | Phase | Days | Output |
 |---|---|---|
 | Script lock + VO scratch | 2 | Timed animatic audio |
-| Krita style frames + palette | 3 | 6 frames — **do not start Blender before this** |
+| Krita style frames + palette | 4 | 8 frames — **do not start Blender before this** |
 | Character sheets | 4 | 5 turnarounds + expressions |
 | Modelling / rigging | 8 | 5 hero characters, 4 sets |
 | Krita textures + overlays | 4 | Full texture set |
-| Krita plates + 2D FX | 4 | Act V plates, transitions, map |
-| Layout / animatic in Blender | 4 | Full 8:08 at low quality |
-| Animation | 12 | All 30 shots |
+| Krita plates + 2D FX | 5 | Act VI plates, both maps, transitions |
+| Layout / animatic in Blender | 4 | Full 10:10 at low quality |
+| Animation | 15 | All 66 shots |
 | Lighting / shading | 5 | Toon pass locked |
-| Render | 3 | Mostly unattended |
+| Render | 4 | Mostly unattended |
 | Sound + edit + grade | 4 | Master |
-| **Total** | **~53 days** | |
+| **Total** | **~58 days** | |
 
-The animatic at day 21 is the real checkpoint. If the film isn't working at animatic stage, no amount of rendering fixes it — recut before you animate.
+The animatic at day 23 is the real checkpoint. If the film isn't working at animatic stage, no amount of rendering fixes it — recut before you animate.
 
 ---
 
@@ -215,4 +215,5 @@ The animatic at day 21 is the real checkpoint. If the film isn't working at anim
 5. Don't unify the crowd's animation phase. Unison movement reads as a bug, not a plague.
 6. Krita `.kra` files with many animation frames get large fast. Keep exported PNG sequences in git; keep `.kra` masters out (or in LFS).
 7. Render PNG sequences, not video files.
-8. The Act V explainer plates should look like a *different film*. Resist the urge to make them match.
+8. The Act VI explainer plates should look like a *different film*. Resist the urge to make them match.
+9. Act VIII is the only modern sequence. Build it with a separate material library — flatter light, desaturated palette, no paper overlay in the compositor. If it looks like the rest of the film, the 1962 turn lands as decoration instead of an argument.

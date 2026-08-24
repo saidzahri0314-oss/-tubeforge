@@ -1,6 +1,6 @@
 # FACT CHECK — Dancing Plague of 1518
 
-Every claim in `SCRIPT.md`, graded. **Verify the ⚠️ and ❌ rows against a primary source before publishing** — those are the ones a history-literate comment section will come for.
+All 36 claims in `SCRIPT.md`, graded. Rows 29-36 cover the Act V precedents and the Act VIII modern case, added in the 10:10 cut. **Verify the ⚠️ and ❌ rows against a primary source before publishing** — those are the ones a history-literate comment section will come for.
 
 ## Confidence table
 
@@ -34,6 +34,14 @@ Every claim in `SCRIPT.md`, graded. **Verify the ⚠️ and ❌ rows against a p
 | 26 | Abandoned children, suicides in the Rhine | ⚠️ Likely | Chronicle accounts; script attributes to "chroniclers" rather than stating as fact |
 | 27 | Belief that St Vitus could inflict compulsive dancing | ✅ Solid | Central to Waller's argument |
 | 28 | Mass psychogenic illness still occurs | ✅ Solid | Well documented in modern literature |
+| 29 | 1374 dancing epidemic began in Aachen, spread down the Rhine (Cologne, Liège, Utrecht) | ✅ Solid | The largest recorded outbreak; began around St John's Day, 24 June 1374 |
+| 30 | 1374 dancers screamed demons' names, begged for exorcism | ✅ Solid | Standard in the chronicle accounts |
+| 31 | 1374 followed catastrophic Rhine flooding the year before | ⚠️ Likely | The 1373/74 floods are documented; the causal link is Waller's argument, not a chronicle claim |
+| 32 | 1237, Erfurt — children danced out of the city to Arnstadt | ⚠️ Likely | Chronicle-attested but legendary in flavour; distance usually given as ~12 miles |
+| 33 | 1278 — ~200 danced on a Meuse bridge until it collapsed; survivors taken to a St Vitus chapel | ⚠️ Likely | Widely repeated in the dancing-mania literature; carries a legendary character. **The St Vitus detail is why it's in the script** — it shows the cultural script already in place 240 years early |
+| 34 | 1428, Schaffhausen — a monk danced to death | ⚠️ Likely | Same year, a group of women in Zürich reportedly in a dancing frenzy |
+| 35 | 1962 Tanganyika laughter epidemic — began with 3 girls at a mission school | ✅ Solid | Kashasha girls' boarding school, Bukoba district, 30 January 1962 |
+| 36 | ~1,000 affected, spread to villages and other schools | ✅ Solid | 95 of 159 pupils affected; school closed 18 March; spread to Nshamba and beyond; ~14 schools closed over ~18 months |
 
 ## Sources
 
@@ -48,15 +56,22 @@ Every claim in `SCRIPT.md`, graded. **Verify the ⚠️ and ❌ rows against a p
 - John Waller, "Looking back: Dancing plagues and mass hysteria," *The Psychologist* 22(7), 2009
 - H.C. Erik Midelfort, *A History of Madness in Sixteenth-Century Germany* (1999) — **the dissenting read.** More cautious about the numbers, and frames the episode in religious/ritual terms rather than as clinical mass hysteria. If a commenter pushes back on the script's confidence at 6:35, this is what they're citing
 - Eugene Backman, *Religious Dances in the Christian Church and in Popular Medicine* (1952) — the cult theory the script dismisses
+- A. M. Rankin & P. J. Philip, "An epidemic of laughing in the Bukoba district of Tanganyika," *Central African Journal of Medicine* 9, 1963 — the primary clinical write-up of the 1962 laughter epidemic
 
 **Quick reference consulted**
 - [Britannica — Dancing plague of 1518](https://www.britannica.com/event/dancing-plague-of-1518)
 - [Wikipedia — Dancing plague of 1518](https://en.wikipedia.org/wiki/Dancing_plague_of_1518)
 - [The Public Domain Review — The Dancing Plague of 1518](https://publicdomainreview.org/essay/the-dancing-plague-of-1518/)
 - [National Geographic — What caused Strasbourg's dancing plague of 1518?](https://www.nationalgeographic.com/history/article/dancing-plague-of-1518-strasbourg-choreomania)
+- [Wikipedia — Dancing mania](https://en.wikipedia.org/wiki/Dancing_mania) — the outbreak timeline used in Act V
+- [Britannica — 24 June 1374, the Dancing Plague of Aachen](https://www.britannica.com/today-in-history/June-24-1374-Dancing-Plague-of-Aachen)
+- [Smithsonian — A strange case of dancing mania struck Germany six centuries ago](https://www.smithsonianmag.com/smart-news/strange-case-dancing-mania-struck-germany-six-centuries-ago-today-180959549/)
 
 ## Editorial position
 
 The script commits to Waller's mass-psychogenic-illness reading because it is the mainstream view and it makes a coherent 8 minutes. It stays honest by doing three things on camera: naming Specklin's chronicle as late, debunking its death toll, and flagging that the 400 figure is the high end of a range. That honesty is not a hedge — it is the most persuasive thirty seconds in the video, and it is what separates this from the twenty other Dancing Plague videos that repeat "fifteen people a day" as fact.
 
 **Not claimed anywhere in the script:** a specific death toll, a precise dancer count stated as certain, or that ergot has been conclusively ruled out for *every* historical dancing mania (it hasn't — the argument here is specific to 1518).
+
+
+**On Act V.** The precedent outbreaks carry a heavier legendary load than 1518 does — the 1278 bridge and the 1237 children are repeated far more often than they are documented. The script's wording is chosen to survive that: it recounts what the chronicles say without asserting the numbers as fact, and the argument it draws from them — that these episodes cluster in one region and follow disasters — holds even if any individual anecdote is embroidered. If you want to cut one for safety, cut 1237.
