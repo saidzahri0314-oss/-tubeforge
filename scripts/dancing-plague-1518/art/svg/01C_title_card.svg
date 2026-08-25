@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080">
+  <defs>
+    <mask id="cut">
+      <rect width="1920" height="1080" fill="#ffffff"/>
+      <text x="960.0" y="508" text-anchor="middle" font-family="Georgia, serif" font-weight="bold" font-size="167" letter-spacing="6" fill="#000000">THE DANCING</text>
+      <text x="960.0" y="697" text-anchor="middle" font-family="Georgia, serif" font-weight="bold" font-size="167" letter-spacing="6" fill="#000000">PLAGUE</text>
+    </mask>
+  </defs>
+  <rect width="1920" height="1080" fill="#C42B1C"/>
+  <rect width="1920" height="1080" fill="#E8DCC0" mask="url(#cut)"/>
+  <text x="960.0" y="859" text-anchor="middle" font-family="Georgia, serif" font-size="63" letter-spacing="16" fill="#1A1614">STRASBOURG &#183; 1518</text>
+</svg>

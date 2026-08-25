@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="1400" viewBox="0 0 1400 1400">
+  <rect width="1400" height="1400" fill="#E8DCC0"/>
+  <path d="M 700.0 700.0 L 343.6 343.6 A 504.0 504.0 0 0 1 1056.4 343.6 Z" fill="#C42B1C" fill-opacity="0.92" stroke="#1A1614" stroke-width="5"/>
+  <text x="700" y="367" text-anchor="middle" font-family="Georgia, serif" font-size="53" letter-spacing="2" fill="#E8DCC0">BLOOD</text>
+  <path d="M 700.0 700.0 L 1056.4 343.6 A 504.0 504.0 0 0 1 1056.4 1056.4 Z" fill="#B07D3A" fill-opacity="0.34" stroke="#1A1614" stroke-width="5"/>
+  <text x="1033" y="700" text-anchor="middle" font-family="Georgia, serif" font-size="53" letter-spacing="2" fill="#1A1614">YELLOW BILE</text>
+  <path d="M 700.0 700.0 L 1056.4 1056.4 A 504.0 504.0 0 0 1 343.6 1056.4 Z" fill="#1A1614" fill-opacity="0.34" stroke="#1A1614" stroke-width="5"/>
+  <text x="700" y="1033" text-anchor="middle" font-family="Georgia, serif" font-size="53" letter-spacing="2" fill="#1A1614">BLACK BILE</text>
+  <path d="M 700.0 700.0 L 343.6 1056.4 A 504.0 504.0 0 0 1 343.6 343.6 Z" fill="#8B9A93" fill-opacity="0.34" stroke="#1A1614" stroke-width="5"/>
+  <text x="367" y="700" text-anchor="middle" font-family="Georgia, serif" font-size="53" letter-spacing="2" fill="#1A1614">PHLEGM</text>
+  <circle cx="700.0" cy="700.0" r="504.0" fill="none" stroke="#1A1614" stroke-width="9"/>
+  <circle cx="700.0" cy="700.0" r="68" fill="#E8DCC0" stroke="#1A1614" stroke-width="6"/>
+  <path d="M 465.8 259.4 L 401.9 139.3" stroke="#C42B1C" stroke-width="7" stroke-linecap="round"/>
+  <path d="M 521.2 234.2 L 485.7 141.7" stroke="#C42B1C" stroke-width="6" stroke-linecap="round"/>
+  <path d="M 579.3 215.9 L 574.0 194.6" stroke="#C42B1C" stroke-width="5" stroke-linecap="round"/>
+  <path d="M 639.2 204.8 L 642.2 229.0" stroke="#C42B1C" stroke-width="7" stroke-linecap="round"/>
+  <path d="M 700.0 201.0 L 700.0 198.3" stroke="#C42B1C" stroke-width="6" stroke-linecap="round"/>
+  <path d="M 760.8 204.8 L 770.4 127.0" stroke="#C42B1C" stroke-width="5" stroke-linecap="round"/>
+  <path d="M 820.7 215.9 L 852.9 86.9" stroke="#C42B1C" stroke-width="7" stroke-linecap="round"/>
+  <path d="M 878.8 234.2 L 920.5 125.7" stroke="#C42B1C" stroke-width="6" stroke-linecap="round"/>
+  <path d="M 934.2 259.4 L 954.8 220.9" stroke="#C42B1C" stroke-width="5" stroke-linecap="round"/>
+  <text x="700.0" y="1323" text-anchor="middle" font-family="Georgia, serif" font-style="italic" font-size="48" fill="#1A1614">The four humours &#8212; too much blood, overheated</text>
+</svg>
