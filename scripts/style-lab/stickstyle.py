@@ -25,7 +25,8 @@ PALETTE = {
     "wood":   "#766c56",   # ladder
     "rope":   "#a2a272",   # lashings
     "hair":   "#897c6c",
-    "mouth":  "#633839",
+    "mouth":  "#653737",   # throat
+    "gum":    "#865455",   # tongue and gums
     "ink":    "#000000",
 }
 

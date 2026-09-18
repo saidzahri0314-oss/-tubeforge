@@ -94,3 +94,20 @@ decision as the flat fills here.
 Two things carry across regardless of style: the horizon as a colour change with
 no line, and rationing detail so one element in the frame is drawn much harder
 than everything around it.
+
+## What measurement does not give you
+
+Masking recovers geometry. It does not tell you what a line *is*, and getting that
+wrong is worse than getting a coordinate wrong. First pass here read the tortured
+figure's limbs as rope, so he came out a head on a string — the black lines were
+all in roughly the right places and the drawing was still incorrect.
+
+The tell was only visible at 3x: the neck and **both arms meet at a single
+shoulder point** (642,367), and the torso splits into legs at the hip (683,467).
+He is a stick figure like the other two, spread-eagled, wrists roped up to the top
+rung and ankles roped down to the plank. Same lesson for the rails — reading
+measured outer edges as centre lines splayed the ladder 70px too wide, which only
+showed up on a row-by-row width diff against the reference.
+
+Check structure at high zoom before trusting a mask, and diff widths against the
+original rather than eyeballing the composite.

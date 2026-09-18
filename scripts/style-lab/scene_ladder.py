@@ -45,8 +45,11 @@ for _ in range(96):
 
 # ---------------------------------------------------------------- the ladder
 # Rail centrelines, from the wood-mask column extents.
-L0, L1 = (322, 96), (716, 895)
-R0, R1 = (686, 66), (1044, 748)
+# Refit against the reference row by row: its ladder is near-constant width
+# (~350px), it does not splay toward the camera. Reading the measured numbers as
+# rail centres when they were outer edges pushed the right rail ~55px wide.
+L0, L1 = (321, 96), (730, 895)
+R0, R1 = (639, 66), (984, 748)
 
 
 def rail_pt(t, top, bot):
@@ -90,13 +93,15 @@ p.stroke([(FX - 1, 224), (FX + 10, 234), (FX - 4, 239)], w=2.4, amp=0.8, step=14
 # the scream
 mouth = oval(590, 262, 41, 38, rot=0.12, n=30)
 p.shape(mouth, C["mouth"], w=4.2, amp=1.4, step=20)
-for i in range(5):                                        # upper teeth
-    tx = 559 + i * 15
-    p.shape([(tx, 232), (tx + 13, 230), (tx + 13, 249), (tx, 251)],
+p.shape(oval(590, 243, 33, 13, n=18), C["gum"], stroke=None, amp=1.0, step=14)
+p.shape(oval(592, 289, 28, 14, n=18), C["gum"], stroke=None, amp=1.0, step=14)  # tongue
+for i in range(4):                                        # upper teeth
+    tx = 562 + i * 15
+    p.shape([(tx, 233), (tx + 11, 231), (tx + 11, 248), (tx, 250)],
             C["skin"], w=2.0, amp=0.7, step=10)
 for i in range(3):                                        # lower teeth
-    tx = 568 + i * 16
-    p.shape([(tx, 292), (tx + 14, 291), (tx + 14, 278), (tx, 279)],
+    tx = 570 + i * 15
+    p.shape([(tx, 291), (tx + 11, 290), (tx + 11, 278), (tx, 279)],
             C["skin"], w=2.0, amp=0.7, step=10)
 # cheek and jaw creases
 for sx in (-1, 1):
@@ -105,30 +110,42 @@ for sx in (-1, 1):
                  w=2.3, amp=0.9, step=14)
 
 # --------------------------------------------------- bottom plank, over rails
-PK_A, PK_B = (636, 816), (1022, 644)
+PK_A, PK_B = (636, 816), (1016, 652)
 p.plank(PK_A, PK_B, 54, 58)
 # the splintered sliver poking up-left out of it
 p.plank((1010, 644), (944, 556), 24, 12, tip=12)
 
-# ------------------------------------------------------------------- ropes
-rung1_a = rail_pt(0.075, L0, L1)
-rung1_b = rail_pt(0.075, R0, R1)
-# two lashings at the top rung
+# ------------------------------------------------ the tortured, and his ropes
+# He is a stick figure like the other two, spread-eagled on the ladder: wrists
+# roped up to the top rung, ankles roped down to the plank. Traced off the
+# reference at 3x — the neck and BOTH arms meet at a single shoulder point
+# (642,367), and the torso splits into legs at the hip (683,467). Read those
+# lines as rope instead of limbs and he ends up a head on a string.
+SHOULDER = (642, 367)
+HIP = (683, 467)
+WRIST_L, WRIST_R = (487, 288), (674, 230)
+ANKLE_L, ANKLE_R = (699, 601), (775, 550)
+
+p.stroke([(604, 291), (624, 330), SHOULDER], w=W_OUTLINE, amp=1.5, step=34)   # neck
+p.stroke([WRIST_L, (521, 314), (556, 344), (600, 360), SHOULDER],             # arms,
+         w=W_OUTLINE, amp=1.8, step=40)                                       # hauled
+p.stroke([WRIST_R, (684, 300), (664, 342), SHOULDER], w=W_OUTLINE, amp=1.8, step=40)
+p.stroke([SHOULDER, (660, 414), HIP], w=W_OUTLINE, amp=1.5, step=44)          # torso
+p.stroke([HIP, (689, 532), ANKLE_L], w=W_OUTLINE, amp=1.8, step=44)           # legs
+p.stroke([HIP, (728, 508), ANKLE_R], w=W_OUTLINE, amp=1.8, step=44)
+
+# top-rung lashings, and the ropes down to each wrist
 p.coil((404, 152), (502, 141), 7, 48)
 p.coil((558, 137), (656, 126), 7, 48)
-# hanging loops beside the face
-p.cord([(470, 148), (497, 206), (494, 262), (476, 288)], w=9)
-p.cord([(650, 133), (676, 192), (674, 250), (658, 280)], w=9)
-# black cords running down the ladder from the face
-p.stroke([(556, 288), (600, 372), (656, 468), (700, 566)], w=3.6, amp=1.6, step=44)
-p.stroke([(618, 292), (664, 386), (724, 474), (776, 556)], w=3.6, amp=1.6, step=44)
-p.stroke([(704, 622), (736, 694), (760, 748)], w=3.6, amp=1.6, step=40)
-p.stroke([(788, 612), (800, 676), (808, 722)], w=3.6, amp=1.6, step=40)
-p.stroke([(497, 205), (530, 232), (548, 250)], w=3.2, amp=1.4, step=30)
-p.stroke([(672, 196), (646, 222), (632, 244)], w=3.2, amp=1.4, step=30)
-# knots on the cords
-p.coil((690, 578), (708, 626), 4, 28)
-p.coil((772, 556), (792, 612), 4, 30)
+p.cord([(470, 148), (458, 206), (470, 258), (488, 284)], w=9)
+p.cord([(650, 133), (674, 178), (680, 210), (674, 234)], w=9)
+p.coil((470, 268), (500, 300), 3, 26)          # wrist bindings, over the limb
+p.coil((660, 214), (690, 244), 3, 26)
+# ankle bindings, and the ropes down to the plank
+p.coil((684, 582), (714, 618), 3, 28)
+p.coil((760, 532), (792, 566), 3, 28)
+p.cord([(702, 616), (710, 670), (730, 714), (750, 742)], w=9)
+p.cord([(780, 566), (802, 626), (838, 686), (868, 724)], w=9)
 # the big lashing round the plank
 p.coil((704, 790), (882, 712), 11, 66)
 
