@@ -90,11 +90,18 @@ Rules that make it work:
 |---|---|---|
 | **Krita** | Everything drawn: characters, expressions, backgrounds, glows, gag art | **~80%** |
 | **GIMP** | Photo-composite fragments, thumbnail finishing | ~10% |
-| **Kdenlive** | The cut, keyframing, VO sync — **you must add this** | ~10% |
-| **Audacity** | VO cleanup and loudness | thin but mandatory |
+| **CapCut** | The cut, keyframing, VO sync, captions | ~10% |
+| **ElevenLabs** | Narration — directed line by line, see below | thin but decisive |
+| `ffmpeg` | Loudness normalisation, final mux | one command |
 | Inkscape | Title cards, clean arrows/labels only | ~2% |
 | Blender | Not used. | 0% |
 | FLUX / ComfyUI | Thumbnail, and any *deliberately polished* render the script mocks | ~2% |
+
+> **Note on the stack.** CapCut and ElevenLabs are proprietary and cloud-backed, so the
+> pipeline is no longer fully local or fully FOSS. Two practical consequences: narration
+> costs credits per character, and the ElevenLabs **free tier grants no commercial rights
+> and requires attribution** — monetised YouTube needs the Starter tier or above. If either
+> becomes a problem, Kdenlive and a recorded voice are drop-in replacements.
 
 ### Krita — setup
 
@@ -124,17 +131,26 @@ Free-select or fuzzy-select the fragment from a stock photo, **no feather**, pas
 drawing, scale, done. Do not clean up the edge. Public-domain sources keep this safe:
 NASA image library, Wikimedia Commons, openverse. Avoid identifiable private individuals.
 
-### Kdenlive — where the video is actually made
+### CapCut — where the video is actually made
 
 There is no animation in this style. There is **keyframed position/scale/rotation on PNGs,
-cut hard to the voice.**
+cut hard to the voice.** CapCut is well suited to exactly this and is faster than Kdenlive
+for it.
 
-- Project profile 1080p 24fps. Drop the VO on track A1 first, build the picture to it.
-- Use the **Transform** effect for all movement. Two keyframes, linear, no easing.
-- Assets **pop in on a single frame** — no fades. A crossfade in this style reads as an error.
-- Mark every punch word with a guide (`G`) before you place a single image. The cut lands
-  *on* the punch word, not after it.
-- Render: x264, CRF 18, `yuv420p`, AAC 192k.
+- Project 1920×1080, 24 or 30 fps. Drop the VO first, build the picture to it.
+- Transparent PNGs import with alpha intact. Keyframe via the diamond on
+  Position / Scale / Rotation. Leave interpolation linear — **no easing**.
+- Assets **pop in on a single frame**. No fades. A crossfade here reads as an error.
+- Split the VO at every punch word before placing a single image. The cut lands *on* the
+  punch word, not after it.
+- **Auto Captions** is genuinely good and suits this format. Restyle to Patrick Hand.
+- Avoid any effect or sticker marked Pro — those are what trigger the watermark. Plain
+  keyframes, text and cuts do not.
+
+**Export settings matter more than usual here.** The painted space backgrounds are large
+smooth gradients, and they band badly at CapCut's default bitrate. Export 1080p, custom
+bitrate **16–20 Mbps**, and keep thin saturated red off dark grey — 4:2:0 chroma
+subsampling will fringe it.
 
 ### Where FLUX and ComfyUI belong
 
@@ -150,24 +166,42 @@ Never let it touch the doodles.
 
 ---
 
-## VO — the actual product
+## VO — direct it, don't generate it
 
 This writing is a **comedy performance**, not narration. The beat before a one-word
-dismissal, the flat delivery of an insult — that timing is the entire product. Local TTS
-(VibeVoice, IndexTTS-2, Chatterbox) will read the lines correctly and kill every joke.
+dismissal, the flat delivery of an insult — that timing *is* the product.
 
-Record it yourself. Dry, close-mic, deadpan, low energy. Then in Audacity:
+ElevenLabs v3 can do this, but only if you treat it as an actor you are directing rather
+than a renderer you are feeding. The failure mode is pasting the whole script and taking
+one render: the model then owns your comic timing, and it will smooth every pause flat.
 
-1. High-pass at 80 Hz
-2. Noise Reduction (12 dB / 6 / 6)
-3. Compressor, ratio ~3:1
-4. Limiter, −1 dB ceiling
-5. Loudness Normalization → **−14 LUFS integrated**
-6. Export WAV 48 kHz
+**The workflow:**
 
-Cut the VO to time *before* you draw anything. The edit is built on the voice.
+1. **Generate line by line, never in bulk.** One take per sentence, or per punchline.
+   The silence *between* lines is where the jokes live, and you want to own it in CapCut.
+2. **Tag the delivery.** v3 reads bracketed cues as direction. The useful vocabulary for
+   this voice: `[deadpan]`, `[flatly]`, `[matter-of-fact]`, `[understated]`,
+   `[sarcastically]`, `[continues after a beat]`, `[slows down]`, `[rushed]`.
+3. **Set stability to Natural or Creative — not Robust.** Robust actively reduces
+   responsiveness to tags, so a `[deadpan]` on a Robust setting gets ignored. This is the
+   opposite of the intuitive choice.
+4. **Pauses:** use `[pause]` / `[short pause]` / `[long pause]`. v3 does **not** support
+   SSML `<break>` tags. Use them sparingly — stacking pause tags in one generation causes
+   audible artefacts. Prefer building long gaps in the edit instead.
+5. **Pick takes.** Regenerate the load-bearing punchlines three or four times and choose.
+   This is the single highest-leverage habit in the whole pipeline.
+6. **Test tags against your chosen voice.** A serious, professional voice will not respond
+   well to playful direction; some tags are inconsistent across voices.
 
----
+**Then normalise.** ElevenLabs output is already clean, so no noise reduction is needed —
+just loudness:
+
+```
+ffmpeg -i vo_raw.wav -af loudnorm=I=-14:TP=-1:LRA=11 -ar 48000 vo.wav
+```
+
+Assemble the per-line takes on the CapCut timeline **before you draw anything.** The edit
+is built on the voice, and drawing to an untimed script means drawing for beats that get cut.
 
 ## TYPOGRAPHY
 
@@ -230,3 +264,7 @@ is the whole reason this format exists.
 7. Over-rationing expressions. Build 8–12 up front; drawing a new face mid-edit breaks flow.
 8. Letting FLUX near the artwork. Polish is the enemy of this specific joke.
 9. Too many photo composites. One per 60–90 s. It is seasoning.
+10. Generating the VO as one block. You hand your comic timing to the model. Line by line.
+11. Robust stability on ElevenLabs. It suppresses the delivery tags you need most.
+12. Default CapCut export bitrate. The gradient backgrounds will band. 16–20 Mbps.
+13. Shipping on the ElevenLabs free tier. No commercial rights, attribution required.
