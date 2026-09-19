@@ -7,14 +7,20 @@ measured off the reference by masking on its five flat colours. What is eyeballe
 is everything the measurement cannot give you — where a wrinkle goes, how a
 smirk sits.
 
-    python3 scene_ladder.py && node render.cjs out/ladder.svg out/ladder.png
+    python3 scene_ladder.py
+    NODE_PATH=/opt/node22/lib/node_modules node \
+        ../../.claude/skills/stick-cartoon/scripts/render.cjs \
+        "$PWD/out/ladder.svg" "$PWD/out/ladder.png" 1636 980
 """
 
 import math
 import os
 import sys
 
-sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+# The engine lives in the stick-cartoon skill so future sessions pick it up
+# automatically; this scene is just the worked example that exercises it.
+REPO = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+sys.path.insert(0, os.path.join(REPO, ".claude", "skills", "stick-cartoon", "scripts"))
 from stickstyle import Pen, PALETTE, oval, lerp, W_OUTLINE, W_EDGE, W_DETAIL  # noqa: E402
 
 C = PALETTE

@@ -54,18 +54,31 @@ frame redraws identically), resolution-independent, and scriptable to 24 fps.
 
 ## What is here
 
+The style itself is saved as a skill at `.claude/skills/stick-cartoon/`, so
+future sessions pick it up without being pointed at it. That skill owns the
+reusable parts — the spec, the engine, the measurement recipe:
+
 ```
-stickstyle.py     ~200-line engine: wobble pen, flat-fill shapes, rope coils, flecks
+.claude/skills/stick-cartoon/
+├── SKILL.md                  spec, method, and the traps
+├── scripts/stickstyle.py     the engine: wobble pen, flat-fill shapes, coils, flecks
+├── scripts/render.cjs        SVG -> PNG via headless Chromium
+└── assets/sample-frame.png   the output to match
+```
+
+This folder keeps the worked example that exercises it:
+
+```
 scene_ladder.py   the scene — measured geometry, hand-placed expression
-render.cjs        SVG -> PNG via headless Chromium (already installed for Playwright)
 out/              ladder.svg, ladder.png, compare.png
 ```
 
 ```bash
 python3 scene_ladder.py
-NODE_PATH=/opt/node22/lib/node_modules node render.cjs "$PWD/out/ladder.svg" "$PWD/out/ladder.png" 1636 980
+R=../../.claude/skills/stick-cartoon/scripts/render.cjs
+NODE_PATH=/opt/node22/lib/node_modules node $R "$PWD/out/ladder.svg" "$PWD/out/ladder.png" 1636 980
 # same SVG at 4K, since it is vector:
-NODE_PATH=/opt/node22/lib/node_modules node render.cjs "$PWD/out/ladder.svg" "$PWD/out/4k.png" 1636 980 2.348
+NODE_PATH=/opt/node22/lib/node_modules node $R "$PWD/out/ladder.svg" "$PWD/out/4k.png" 1636 980 2.348
 ```
 
 ## How the wobble works
