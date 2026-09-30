@@ -1,0 +1,581 @@
+{
+  "last_node_id": 11,
+  "last_link_id": 13,
+  "nodes": [
+    {
+      "id": 1,
+      "type": "CheckpointLoaderSimple",
+      "pos": [
+        500,
+        0
+      ],
+      "size": [
+        380,
+        100
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "links": [
+            1
+          ],
+          "slot_index": 0
+        },
+        {
+          "name": "CLIP",
+          "type": "CLIP",
+          "links": [
+            5,
+            6
+          ],
+          "slot_index": 1
+        },
+        {
+          "name": "VAE",
+          "type": "VAE",
+          "links": [
+            12
+          ],
+          "slot_index": 2
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "CheckpointLoaderSimple"
+      },
+      "widgets_values": [
+        "sd_xl_base_1.0.safetensors"
+      ]
+    },
+    {
+      "id": 2,
+      "type": "Note",
+      "pos": [
+        0,
+        0
+      ],
+      "size": [
+        460,
+        380
+      ],
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [],
+      "properties": {},
+      "widgets_values": [
+        "SDXL + STYLE REFERENCE (IPAdapter)\n\nNeeds the custom node pack \"ComfyUI_IPAdapter_plus\" (install it from ComfyUI Manager).\n\nModel files:\n- models/checkpoints/sd_xl_base_1.0.safetensors (or any SDXL checkpoint)\n- models/ipadapter/ip-adapter-plus_sdxl_vit-h.safetensors\n- models/clip_vision/CLIP-ViT-H-14-laion2B-s32B-b79K.safetensors\n\nPut your reference picture in ComfyUI/input/ as style_reference.png,\nor click \"choose file to upload\" on the Load Image node.\n\nWeight type \"style transfer\" copies the look (lines, colours, shading)\nbut takes the content from your prompt. Weight 0.6 = subtle, 1.2 = strong."
+      ],
+      "title": "READ ME",
+      "color": "#432",
+      "bgcolor": "#653"
+    },
+    {
+      "id": 3,
+      "type": "LoadImage",
+      "pos": [
+        0,
+        420
+      ],
+      "size": [
+        460,
+        420
+      ],
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            4
+          ],
+          "slot_index": 0
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": [],
+          "slot_index": 1
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LoadImage"
+      },
+      "widgets_values": [
+        "style_reference.png",
+        "image"
+      ],
+      "title": "Style reference image"
+    },
+    {
+      "id": 4,
+      "type": "IPAdapterUnifiedLoader",
+      "pos": [
+        500,
+        150
+      ],
+      "size": [
+        380,
+        80
+      ],
+      "flags": {},
+      "order": 4,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 1
+        }
+      ],
+      "outputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "links": [
+            2
+          ],
+          "slot_index": 0
+        },
+        {
+          "name": "ipadapter",
+          "type": "IPADAPTER",
+          "links": [
+            3
+          ],
+          "slot_index": 1
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "IPAdapterUnifiedLoader"
+      },
+      "widgets_values": [
+        "PLUS (high strength)"
+      ]
+    },
+    {
+      "id": 5,
+      "type": "IPAdapterAdvanced",
+      "pos": [
+        500,
+        290
+      ],
+      "size": [
+        380,
+        280
+      ],
+      "flags": {},
+      "order": 7,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 2
+        },
+        {
+          "name": "ipadapter",
+          "type": "IPADAPTER",
+          "link": 3
+        },
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 4
+        }
+      ],
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "links": [
+            7
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "IPAdapterAdvanced"
+      },
+      "widgets_values": [
+        1.0,
+        "style transfer",
+        "concat",
+        0.0,
+        1.0,
+        "V only"
+      ]
+    },
+    {
+      "id": 6,
+      "type": "CLIPTextEncode",
+      "pos": [
+        930,
+        0
+      ],
+      "size": [
+        460,
+        220
+      ],
+      "flags": {},
+      "order": 5,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 5
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            8
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "CLIPTextEncode"
+      },
+      "widgets_values": [
+        "flat 2D cartoon illustration, bold clean black outlines, simple cel shading, bright saturated colors, stick-figure characters with plain white round heads, simple black dot eyes, thin black stick arms and legs, historical costumes, highly detailed background, a medieval crusader knight in chainmail with a nose-guard helmet, white tabard with a red cross and a red cape, lying knocked out on the ground with X eyes, next to a worried woman in a long red medieval dress with a gold circlet and a cream headscarf, sunny Moorish market street, horseshoe arches, carved wooden balconies, hanging brass lanterns, palm trees, clay pots and woven baskets, wide 16:9 shot"
+      ],
+      "title": "Prompt (style + scene)",
+      "color": "#232",
+      "bgcolor": "#353"
+    },
+    {
+      "id": 7,
+      "type": "CLIPTextEncode",
+      "pos": [
+        930,
+        270
+      ],
+      "size": [
+        460,
+        150
+      ],
+      "flags": {},
+      "order": 6,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 6
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            9
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "CLIPTextEncode"
+      },
+      "widgets_values": [
+        "photo, photorealistic, realistic, 3d render, CGI, anime, painterly, blurry, grainy, noisy, gradient shading, detailed face, nose, realistic hands, extra limbs, deformed, text, letters, watermark, signature, logo, frame, border"
+      ],
+      "title": "Negative prompt",
+      "color": "#322",
+      "bgcolor": "#533"
+    },
+    {
+      "id": 8,
+      "type": "EmptyLatentImage",
+      "pos": [
+        930,
+        470
+      ],
+      "size": [
+        320,
+        110
+      ],
+      "flags": {},
+      "order": 3,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "links": [
+            10
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "EmptyLatentImage"
+      },
+      "widgets_values": [
+        1344,
+        768,
+        1
+      ]
+    },
+    {
+      "id": 9,
+      "type": "KSampler",
+      "pos": [
+        1430,
+        0
+      ],
+      "size": [
+        320,
+        270
+      ],
+      "flags": {},
+      "order": 8,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 7
+        },
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "link": 8
+        },
+        {
+          "name": "negative",
+          "type": "CONDITIONING",
+          "link": 9
+        },
+        {
+          "name": "latent_image",
+          "type": "LATENT",
+          "link": 10
+        }
+      ],
+      "outputs": [
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "links": [
+            11
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "KSampler"
+      },
+      "widgets_values": [
+        1518,
+        "randomize",
+        30,
+        6.0,
+        "dpmpp_2m",
+        "karras",
+        1.0
+      ]
+    },
+    {
+      "id": 10,
+      "type": "VAEDecode",
+      "pos": [
+        1430,
+        320
+      ],
+      "size": [
+        220,
+        50
+      ],
+      "flags": {},
+      "order": 9,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "samples",
+          "type": "LATENT",
+          "link": 11
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": 12
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            13
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "VAEDecode"
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 11,
+      "type": "SaveImage",
+      "pos": [
+        1790,
+        0
+      ],
+      "size": [
+        700,
+        460
+      ],
+      "flags": {},
+      "order": 10,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 13
+        }
+      ],
+      "outputs": [],
+      "properties": {
+        "Node name for S&R": "SaveImage"
+      },
+      "widgets_values": [
+        "tubeforge/sdxl_styleref"
+      ]
+    }
+  ],
+  "links": [
+    [
+      1,
+      1,
+      0,
+      4,
+      0,
+      "MODEL"
+    ],
+    [
+      2,
+      4,
+      0,
+      5,
+      0,
+      "MODEL"
+    ],
+    [
+      3,
+      4,
+      1,
+      5,
+      1,
+      "IPADAPTER"
+    ],
+    [
+      4,
+      3,
+      0,
+      5,
+      2,
+      "IMAGE"
+    ],
+    [
+      5,
+      1,
+      1,
+      6,
+      0,
+      "CLIP"
+    ],
+    [
+      6,
+      1,
+      1,
+      7,
+      0,
+      "CLIP"
+    ],
+    [
+      7,
+      5,
+      0,
+      9,
+      0,
+      "MODEL"
+    ],
+    [
+      8,
+      6,
+      0,
+      9,
+      1,
+      "CONDITIONING"
+    ],
+    [
+      9,
+      7,
+      0,
+      9,
+      2,
+      "CONDITIONING"
+    ],
+    [
+      10,
+      8,
+      0,
+      9,
+      3,
+      "LATENT"
+    ],
+    [
+      11,
+      9,
+      0,
+      10,
+      0,
+      "LATENT"
+    ],
+    [
+      12,
+      1,
+      2,
+      10,
+      1,
+      "VAE"
+    ],
+    [
+      13,
+      10,
+      0,
+      11,
+      0,
+      "IMAGE"
+    ]
+  ],
+  "groups": [],
+  "config": {},
+  "extra": {
+    "ds": {
+      "scale": 0.75,
+      "offset": [
+        40,
+        60
+      ]
+    }
+  },
+  "version": 0.4
+}

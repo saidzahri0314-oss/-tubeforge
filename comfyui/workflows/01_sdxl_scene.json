@@ -1,0 +1,410 @@
+{
+  "last_node_id": 8,
+  "last_link_id": 9,
+  "nodes": [
+    {
+      "id": 1,
+      "type": "CheckpointLoaderSimple",
+      "pos": [
+        500,
+        0
+      ],
+      "size": [
+        380,
+        100
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "links": [
+            3
+          ],
+          "slot_index": 0
+        },
+        {
+          "name": "CLIP",
+          "type": "CLIP",
+          "links": [
+            1,
+            2
+          ],
+          "slot_index": 1
+        },
+        {
+          "name": "VAE",
+          "type": "VAE",
+          "links": [
+            8
+          ],
+          "slot_index": 2
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "CheckpointLoaderSimple"
+      },
+      "widgets_values": [
+        "sd_xl_base_1.0.safetensors"
+      ]
+    },
+    {
+      "id": 2,
+      "type": "Note",
+      "pos": [
+        0,
+        0
+      ],
+      "size": [
+        460,
+        360
+      ],
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [],
+      "properties": {},
+      "widgets_values": [
+        "SDXL SCENE\n\nModel file:\n- models/checkpoints/sd_xl_base_1.0.safetensors\n  (any SDXL checkpoint works; pick it in the loader)\n\nEdit the green prompt: keep the style words at the start,\nchange the scene after them.\n\n1344x768 is SDXL's native widescreen size.\nRun 05_upscale_to_4k on the keepers.\n\nSeed is set to randomize: every run is a new image.\nSet it to fixed to re-run one you like."
+      ],
+      "title": "READ ME",
+      "color": "#432",
+      "bgcolor": "#653"
+    },
+    {
+      "id": 3,
+      "type": "CLIPTextEncode",
+      "pos": [
+        500,
+        150
+      ],
+      "size": [
+        460,
+        220
+      ],
+      "flags": {},
+      "order": 3,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 1
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            4
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "CLIPTextEncode"
+      },
+      "widgets_values": [
+        "flat 2D cartoon illustration, bold clean black outlines, simple cel shading, bright saturated colors, stick-figure characters with plain white round heads, simple black dot eyes, thin black stick arms and legs, historical costumes, highly detailed background, a medieval crusader knight in chainmail with a nose-guard helmet, white tabard with a red cross and a red cape, lying knocked out on the ground with X eyes, next to a worried woman in a long red medieval dress with a gold circlet and a cream headscarf, sunny Moorish market street, horseshoe arches, carved wooden balconies, hanging brass lanterns, palm trees, clay pots and woven baskets, wide 16:9 shot"
+      ],
+      "title": "Prompt (style + scene)",
+      "color": "#232",
+      "bgcolor": "#353"
+    },
+    {
+      "id": 4,
+      "type": "CLIPTextEncode",
+      "pos": [
+        500,
+        420
+      ],
+      "size": [
+        460,
+        150
+      ],
+      "flags": {},
+      "order": 4,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 2
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            5
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "CLIPTextEncode"
+      },
+      "widgets_values": [
+        "photo, photorealistic, realistic, 3d render, CGI, anime, painterly, blurry, grainy, noisy, gradient shading, detailed face, nose, realistic hands, extra limbs, deformed, text, letters, watermark, signature, logo, frame, border"
+      ],
+      "title": "Negative prompt",
+      "color": "#322",
+      "bgcolor": "#533"
+    },
+    {
+      "id": 5,
+      "type": "EmptyLatentImage",
+      "pos": [
+        500,
+        620
+      ],
+      "size": [
+        320,
+        110
+      ],
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "links": [
+            6
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "EmptyLatentImage"
+      },
+      "widgets_values": [
+        1344,
+        768,
+        1
+      ]
+    },
+    {
+      "id": 6,
+      "type": "KSampler",
+      "pos": [
+        1000,
+        0
+      ],
+      "size": [
+        320,
+        270
+      ],
+      "flags": {},
+      "order": 5,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 3
+        },
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "link": 4
+        },
+        {
+          "name": "negative",
+          "type": "CONDITIONING",
+          "link": 5
+        },
+        {
+          "name": "latent_image",
+          "type": "LATENT",
+          "link": 6
+        }
+      ],
+      "outputs": [
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "links": [
+            7
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "KSampler"
+      },
+      "widgets_values": [
+        1518,
+        "randomize",
+        30,
+        6.0,
+        "dpmpp_2m",
+        "karras",
+        1.0
+      ]
+    },
+    {
+      "id": 7,
+      "type": "VAEDecode",
+      "pos": [
+        1000,
+        320
+      ],
+      "size": [
+        220,
+        50
+      ],
+      "flags": {},
+      "order": 6,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "samples",
+          "type": "LATENT",
+          "link": 7
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": 8
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            9
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "VAEDecode"
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 8,
+      "type": "SaveImage",
+      "pos": [
+        1360,
+        0
+      ],
+      "size": [
+        700,
+        460
+      ],
+      "flags": {},
+      "order": 7,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 9
+        }
+      ],
+      "outputs": [],
+      "properties": {
+        "Node name for S&R": "SaveImage"
+      },
+      "widgets_values": [
+        "tubeforge/sdxl_scene"
+      ]
+    }
+  ],
+  "links": [
+    [
+      1,
+      1,
+      1,
+      3,
+      0,
+      "CLIP"
+    ],
+    [
+      2,
+      1,
+      1,
+      4,
+      0,
+      "CLIP"
+    ],
+    [
+      3,
+      1,
+      0,
+      6,
+      0,
+      "MODEL"
+    ],
+    [
+      4,
+      3,
+      0,
+      6,
+      1,
+      "CONDITIONING"
+    ],
+    [
+      5,
+      4,
+      0,
+      6,
+      2,
+      "CONDITIONING"
+    ],
+    [
+      6,
+      5,
+      0,
+      6,
+      3,
+      "LATENT"
+    ],
+    [
+      7,
+      6,
+      0,
+      7,
+      0,
+      "LATENT"
+    ],
+    [
+      8,
+      1,
+      2,
+      7,
+      1,
+      "VAE"
+    ],
+    [
+      9,
+      7,
+      0,
+      8,
+      0,
+      "IMAGE"
+    ]
+  ],
+  "groups": [],
+  "config": {},
+  "extra": {
+    "ds": {
+      "scale": 0.75,
+      "offset": [
+        40,
+        60
+      ]
+    }
+  },
+  "version": 0.4
+}

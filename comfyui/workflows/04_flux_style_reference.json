@@ -1,0 +1,740 @@
+{
+  "last_node_id": 16,
+  "last_link_id": 15,
+  "nodes": [
+    {
+      "id": 1,
+      "type": "Note",
+      "pos": [
+        0,
+        0
+      ],
+      "size": [
+        460,
+        400
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [],
+      "properties": {},
+      "widgets_values": [
+        "FLUX + STYLE REFERENCE (Redux, core nodes only)\n\nModel files:\n- models/diffusion_models/flux1-dev.safetensors\n- models/text_encoders/clip_l.safetensors\n- models/text_encoders/t5xxl_fp8_e4m3fn.safetensors\n- models/vae/ae.safetensors\n- models/style_models/flux1-redux-dev.safetensors\n- models/clip_vision/sigclip_vision_patch14_384.safetensors\n\nPut your reference picture in ComfyUI/input/ as style_reference.png,\nor click \"choose file to upload\" on the Load Image node.\n\nRedux copies content as well as style. Apply Style Model strength\n(attn_bias) sets the balance: 0.3 = mostly your prompt,\n0.8 = close to the reference picture."
+      ],
+      "title": "READ ME",
+      "color": "#432",
+      "bgcolor": "#653"
+    },
+    {
+      "id": 2,
+      "type": "UNETLoader",
+      "pos": [
+        500,
+        0
+      ],
+      "size": [
+        380,
+        90
+      ],
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "links": [
+            9
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "UNETLoader"
+      },
+      "widgets_values": [
+        "flux1-dev.safetensors",
+        "default"
+      ]
+    },
+    {
+      "id": 3,
+      "type": "DualCLIPLoader",
+      "pos": [
+        500,
+        140
+      ],
+      "size": [
+        380,
+        130
+      ],
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "CLIP",
+          "type": "CLIP",
+          "links": [
+            1
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "DualCLIPLoader"
+      },
+      "widgets_values": [
+        "clip_l.safetensors",
+        "t5xxl_fp8_e4m3fn.safetensors",
+        "flux",
+        "default"
+      ]
+    },
+    {
+      "id": 4,
+      "type": "VAELoader",
+      "pos": [
+        500,
+        320
+      ],
+      "size": [
+        380,
+        60
+      ],
+      "flags": {},
+      "order": 3,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "VAE",
+          "type": "VAE",
+          "links": [
+            14
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "VAELoader"
+      },
+      "widgets_values": [
+        "ae.safetensors"
+      ]
+    },
+    {
+      "id": 5,
+      "type": "CLIPTextEncode",
+      "pos": [
+        930,
+        0
+      ],
+      "size": [
+        460,
+        220
+      ],
+      "flags": {},
+      "order": 8,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 1
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            2,
+            8
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "CLIPTextEncode"
+      },
+      "widgets_values": [
+        "flat 2D cartoon illustration, bold clean black outlines, simple cel shading, bright saturated colors, stick-figure characters with plain white round heads, simple black dot eyes, thin black stick arms and legs, historical costumes, highly detailed background, a medieval crusader knight in chainmail with a nose-guard helmet, white tabard with a red cross and a red cape, lying knocked out on the ground with X eyes, next to a worried woman in a long red medieval dress with a gold circlet and a cream headscarf, sunny Moorish market street, horseshoe arches, carved wooden balconies, hanging brass lanterns, palm trees, clay pots and woven baskets, wide 16:9 shot"
+      ],
+      "title": "Prompt (style + scene)",
+      "color": "#232",
+      "bgcolor": "#353"
+    },
+    {
+      "id": 6,
+      "type": "FluxGuidance",
+      "pos": [
+        930,
+        270
+      ],
+      "size": [
+        320,
+        60
+      ],
+      "flags": {},
+      "order": 10,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "conditioning",
+          "type": "CONDITIONING",
+          "link": 2
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            5
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "FluxGuidance"
+      },
+      "widgets_values": [
+        3.5
+      ]
+    },
+    {
+      "id": 7,
+      "type": "LoadImage",
+      "pos": [
+        0,
+        440
+      ],
+      "size": [
+        460,
+        420
+      ],
+      "flags": {},
+      "order": 4,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            4
+          ],
+          "slot_index": 0
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": [],
+          "slot_index": 1
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LoadImage"
+      },
+      "widgets_values": [
+        "style_reference.png",
+        "image"
+      ],
+      "title": "Style reference image"
+    },
+    {
+      "id": 8,
+      "type": "CLIPVisionLoader",
+      "pos": [
+        500,
+        430
+      ],
+      "size": [
+        380,
+        60
+      ],
+      "flags": {},
+      "order": 5,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "CLIP_VISION",
+          "type": "CLIP_VISION",
+          "links": [
+            3
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "CLIPVisionLoader"
+      },
+      "widgets_values": [
+        "sigclip_vision_patch14_384.safetensors"
+      ]
+    },
+    {
+      "id": 9,
+      "type": "CLIPVisionEncode",
+      "pos": [
+        500,
+        540
+      ],
+      "size": [
+        380,
+        80
+      ],
+      "flags": {},
+      "order": 9,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "clip_vision",
+          "type": "CLIP_VISION",
+          "link": 3
+        },
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 4
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CLIP_VISION_OUTPUT",
+          "type": "CLIP_VISION_OUTPUT",
+          "links": [
+            7
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "CLIPVisionEncode"
+      },
+      "widgets_values": [
+        "center"
+      ]
+    },
+    {
+      "id": 10,
+      "type": "StyleModelLoader",
+      "pos": [
+        500,
+        670
+      ],
+      "size": [
+        380,
+        60
+      ],
+      "flags": {},
+      "order": 6,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "STYLE_MODEL",
+          "type": "STYLE_MODEL",
+          "links": [
+            6
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "StyleModelLoader"
+      },
+      "widgets_values": [
+        "flux1-redux-dev.safetensors"
+      ]
+    },
+    {
+      "id": 11,
+      "type": "StyleModelApply",
+      "pos": [
+        930,
+        380
+      ],
+      "size": [
+        320,
+        130
+      ],
+      "flags": {},
+      "order": 12,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "conditioning",
+          "type": "CONDITIONING",
+          "link": 5
+        },
+        {
+          "name": "style_model",
+          "type": "STYLE_MODEL",
+          "link": 6
+        },
+        {
+          "name": "clip_vision_output",
+          "type": "CLIP_VISION_OUTPUT",
+          "link": 7
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            10
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "StyleModelApply"
+      },
+      "widgets_values": [
+        0.5,
+        "attn_bias"
+      ]
+    },
+    {
+      "id": 12,
+      "type": "ConditioningZeroOut",
+      "pos": [
+        930,
+        560
+      ],
+      "size": [
+        320,
+        30
+      ],
+      "flags": {},
+      "order": 11,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "conditioning",
+          "type": "CONDITIONING",
+          "link": 8
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            11
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "ConditioningZeroOut"
+      },
+      "widgets_values": [],
+      "title": "Negative (empty)"
+    },
+    {
+      "id": 13,
+      "type": "EmptySD3LatentImage",
+      "pos": [
+        930,
+        640
+      ],
+      "size": [
+        320,
+        110
+      ],
+      "flags": {},
+      "order": 7,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "links": [
+            12
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "EmptySD3LatentImage"
+      },
+      "widgets_values": [
+        1536,
+        864,
+        1
+      ]
+    },
+    {
+      "id": 14,
+      "type": "KSampler",
+      "pos": [
+        1430,
+        0
+      ],
+      "size": [
+        320,
+        270
+      ],
+      "flags": {},
+      "order": 13,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 9
+        },
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "link": 10
+        },
+        {
+          "name": "negative",
+          "type": "CONDITIONING",
+          "link": 11
+        },
+        {
+          "name": "latent_image",
+          "type": "LATENT",
+          "link": 12
+        }
+      ],
+      "outputs": [
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "links": [
+            13
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "KSampler"
+      },
+      "widgets_values": [
+        1518,
+        "randomize",
+        25,
+        1.0,
+        "euler",
+        "simple",
+        1.0
+      ]
+    },
+    {
+      "id": 15,
+      "type": "VAEDecode",
+      "pos": [
+        1430,
+        320
+      ],
+      "size": [
+        220,
+        50
+      ],
+      "flags": {},
+      "order": 14,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "samples",
+          "type": "LATENT",
+          "link": 13
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": 14
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            15
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "VAEDecode"
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 16,
+      "type": "SaveImage",
+      "pos": [
+        1790,
+        0
+      ],
+      "size": [
+        700,
+        460
+      ],
+      "flags": {},
+      "order": 15,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 15
+        }
+      ],
+      "outputs": [],
+      "properties": {
+        "Node name for S&R": "SaveImage"
+      },
+      "widgets_values": [
+        "tubeforge/flux_styleref"
+      ]
+    }
+  ],
+  "links": [
+    [
+      1,
+      3,
+      0,
+      5,
+      0,
+      "CLIP"
+    ],
+    [
+      2,
+      5,
+      0,
+      6,
+      0,
+      "CONDITIONING"
+    ],
+    [
+      3,
+      8,
+      0,
+      9,
+      0,
+      "CLIP_VISION"
+    ],
+    [
+      4,
+      7,
+      0,
+      9,
+      1,
+      "IMAGE"
+    ],
+    [
+      5,
+      6,
+      0,
+      11,
+      0,
+      "CONDITIONING"
+    ],
+    [
+      6,
+      10,
+      0,
+      11,
+      1,
+      "STYLE_MODEL"
+    ],
+    [
+      7,
+      9,
+      0,
+      11,
+      2,
+      "CLIP_VISION_OUTPUT"
+    ],
+    [
+      8,
+      5,
+      0,
+      12,
+      0,
+      "CONDITIONING"
+    ],
+    [
+      9,
+      2,
+      0,
+      14,
+      0,
+      "MODEL"
+    ],
+    [
+      10,
+      11,
+      0,
+      14,
+      1,
+      "CONDITIONING"
+    ],
+    [
+      11,
+      12,
+      0,
+      14,
+      2,
+      "CONDITIONING"
+    ],
+    [
+      12,
+      13,
+      0,
+      14,
+      3,
+      "LATENT"
+    ],
+    [
+      13,
+      14,
+      0,
+      15,
+      0,
+      "LATENT"
+    ],
+    [
+      14,
+      4,
+      0,
+      15,
+      1,
+      "VAE"
+    ],
+    [
+      15,
+      15,
+      0,
+      16,
+      0,
+      "IMAGE"
+    ]
+  ],
+  "groups": [],
+  "config": {},
+  "extra": {
+    "ds": {
+      "scale": 0.75,
+      "offset": [
+        40,
+        60
+      ]
+    }
+  },
+  "version": 0.4
+}
