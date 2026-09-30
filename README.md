@@ -38,3 +38,11 @@ Local key goes in `.streamlit/secrets.toml` (already gitignored):
 ```toml
 ANTHROPIC_API_KEY = "sk-ant-api03-..."
 ```
+
+## Documentary scripts
+
+[`SCRIPT_PROMPT.md`](SCRIPT_PROMPT.md) is the framework for fast-paced historical documentary scripts in Gulf/White Arabic. Finished scripts live in [`scripts/`](scripts/). To write a new one with Claude Code, run this from the project folder:
+
+```bash
+claude "Follow the framework in SCRIPT_PROMPT.md to write a complete 10-minute script about: <topic>"
+```
